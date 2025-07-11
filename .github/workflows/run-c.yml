@@ -17,22 +17,17 @@ jobs:
     - name: Install GCC
       run: sudo apt-get install -y build-essential
 
-    - name: Compile only files with main()
+    - name: Compile only files with 'int main'
       run: |
-        set -x  # Debug output
-
         mkdir -p bin
-
-        echo "Compiling only C files that contain a 'main' function"
-
+        echo "Compiling C files with 'int main' only..."
         for file in $(find . -name "*.c"); do
-          # Check if file contains a main function (ignoring spaces, tabs)
-          if grep -qP '\b(main)\s*\(' "$file"; then
+          if grep -q "int main" "$file"; then
             exe_name=$(basename "$file" .c)
             echo "✅ Compiling $file -> bin/$exe_name"
-            gcc "$file" -o "bin/$exe_name" 2> gcc_errors.log || echo "❌ Compilation failed for $file"
+            gcc "$file" -o "bin/$exe_name" || exit 1
           else
-            echo "⚠️ Skipping $file (no main function)"
+            echo "⚠️ Skipping $file (no 'int main')"
           fi
         done
 

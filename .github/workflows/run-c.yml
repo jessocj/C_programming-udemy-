@@ -1,4 +1,4 @@
-name: Compile and Run C Programs
+name: Compile and Run C Programs (With main())
 
 on:
   push:
@@ -7,36 +7,25 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  build-and-run:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Checkout Code
       uses: actions/checkout@v3
 
     - name: Install GCC
       run: sudo apt-get install -y build-essential
 
-    - name: Compile only files with 'int main'
+    - name: Compile and Run Programs with int main()
       run: |
         mkdir -p bin
-        echo "Compiling C files with 'int main' only..."
         for file in $(find . -name "*.c"); do
-          if grep -q "int main" "$file"; then
+          if grep -qE "int[[:space:]]+main[[:space:]]*\(" "$file"; then
             exe_name=$(basename "$file" .c)
-            echo "✅ Compiling $file -> bin/$exe_name"
-            gcc "$file" -o "bin/$exe_name" || exit 1
+            echo "✅ Compiling $file..."
+            gcc "$file" -o "bin/$exe_name" && ./bin/$exe_name
           else
-            echo "⚠️ Skipping $file (no 'int main')"
+            echo "⚠️ Skipping $file: no valid 'int main()' found."
           fi
-        done
-
-    - name: Run compiled programs
-      run: |
-        echo "Running executables in bin/:"
-        for exe in bin/*; do
-          echo "===================="
-          echo "Running $exe"
-          "$exe" || echo "❌ Error running $exe"
-          echo
         done

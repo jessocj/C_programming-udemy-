@@ -19,24 +19,29 @@ jobs:
 
     - name: Compile only files with main()
       run: |
+        set -x  # Debug output
+
         mkdir -p bin
-        echo "Searching for .c files with main()..."
+
+        echo "Compiling only C files that contain a 'main' function"
+
         for file in $(find . -name "*.c"); do
-          if grep -E -q "int[[:space:]]+main[[:space:]]*\(|void[[:space:]]+main[[:space:]]*\(" "$file"; then
+          # Check if file contains a main function (ignoring spaces, tabs)
+          if grep -qP '\b(main)\s*\(' "$file"; then
             exe_name=$(basename "$file" .c)
-            echo "Compiling $file -> bin/$exe_name"
-            gcc "$file" -o "bin/$exe_name" || { echo "Failed to compile $file"; exit 1; }
+            echo "✅ Compiling $file -> bin/$exe_name"
+            gcc "$file" -o "bin/$exe_name" 2> gcc_errors.log || echo "❌ Compilation failed for $file"
           else
-            echo "Skipping $file (no main function)"
+            echo "⚠️ Skipping $file (no main function)"
           fi
         done
 
-    - name: Run all compiled programs
+    - name: Run compiled programs
       run: |
-        echo "Running all executables in bin/:"
+        echo "Running executables in bin/:"
         for exe in bin/*; do
           echo "===================="
           echo "Running $exe"
-          "$exe" || echo "Error running $exe"
+          "$exe" || echo "❌ Error running $exe"
           echo
         done

@@ -1,0 +1,126 @@
+1."standard variable"
+    -int num;
+    -double b;
+    -char my_char;
+
+2."1-D array"
+    -int grades[5];
+    -double my_array[5];
+    -char m_seq[5];
+
+3."2-D arrays"
+we need coloumns and rows
+-specify the size of rows
+--specify the size of coloumns
+eg:
+int mat[3][4];
+|      |    |
+type  rows  coloumns
+
+ Array initialization:
+ --------------------------
+1."standard variable"
+    -int num=5;
+    -double b=7.3;
+    -char my_char='h';
+
+2."1-D array"
+    -int grades[5]={100,90,82,85,74};
+    -double my_array[5]={1.2,5.3,6.9,8.2};
+    -char m_seq[5]={'m','i','k','e'};
+
+3."2-D arrays"
+(1)-the "Standard way"
+
+-int mat[2][3]={{1,2,3},{4,5,6}};
+         |   |      |        |
+      rows coloumns 1st row   2nd row
+
+-- 1  2  3
+-- 4  5  6
+
+-double mat[3][2]={{1.2,0.5},{5.2,1.0}{3.3,4.4}};
+            |   |         |       |       |
+          rows  coloumns  1st    2nd      3rd row
+
+--1.2  0.5 
+--5.2  1.0 
+--3.3  4.4
+
+(2)Incomplete values in the Internal curly brackets
+
+-int mat[2][3]={{5,6},{7}};
+--1st row  5  6  0
+--2nd row  7  0  0 
+here incomplete values are filled with "0"
+ 
+-int mat[4][3]={{1,2}{4,5,8},{10}};
+-- 1  2  0
+-- 4  5  8
+-- 10 0  0
+-- 0  0  0
+
+-double mat[3][2]={{},{j5.2,1.0},{3.3}};
+-- 0    0
+-- 5.2  1.0 
+-- 3.3  0
+
+eg of code:
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    double mat[3][2]={{},{5.2,1.0},{3.3}};
+
+    for(int i=0;i<3;i++){
+        for(int j=0;j<2;j++)
+        {
+            printf("%.1f  ",mat[i][j]);
+        }printf("\n");
+    }
+}
+
+(3)Excessively values in the Internal curly brackets
+
+-int mat[2][3]={5,2,1,6,5};
+   0  1   2   3
+     ------------
+-- 0 |5 | 2 | 1 |
+-- 1 |6 | 5 | 0 |
+-here 2x3 matrix
+
+Element acessing:
+--------------------
+1.1D_array
+-int arr[3]={1,2,3};
+-arr[0];-gets 1st element
+-arr[1];-gets 2nd element
+-arr[2];-gets 3rd element
+
+2.2D_array
+-int mat[2][3]={{1,2,3},{4,,5,6}}
+we can see that
+mat[0][0] = 1.0
+mat[0][1] = 2.0
+mat[0][2] = 3.0
+mat[1][0] = 4.0
+mat[1][1] = 5.0
+mat[1][2] = 6.0
+
+then if i code
+mat[0][0]=9;--->it changes the element from 1 to 9 
+
+-printf("%",mat[i][j]);--->to print elements
+
+
+input to element
+-----------------
+int mat[2][3];
+probably going to use "scanf" function
+-scanf("%d",&mat[0][0])-----> add an element in 1st position
+
+-for(i=0;i<2;i++) 
+        for(j=0;j<3;j++)
+            printf("%5d  ",&mat[i][j]);
+

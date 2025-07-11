@@ -1,0 +1,42 @@
+POinter
+--------
+"IF"
+-"standard variable" stores "standard value"
+ then
+"pointer variable" stores an "address"(of stndard variable)
+-a unique type
+
+how to create a pointer:
+                   |not a "standared variable"
+                   |
+                   |
+data type ______int*p;__________name
+"point" to "int"
+
+
+point declaration:
+int*p--->point to int
+double*p---->point to double
+char*p--->point to char
+
+pointers usage:
+1st--
+"&"-address
+
+int*p---->address where it should point to 
+
+eg:
+int a=5;--std variable
+int*p;
+printf("%d",a);--->prints valye of a which is 5
+printf("%p",&a);----> prints address of a which is <9283823>
+
+derefrencing:
+--------------------------
+addressof a:
+printf("%p",p);
+printf("%p",&a);
+
+value of a:
+printf("%d",a);
+printf("%d",*p);

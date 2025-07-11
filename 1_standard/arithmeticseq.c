@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+   int a_1,a_n,d,n;
+   printf("enter the number of terms :");
+   scanf("%d",&n);
+   printf("enter the first term :");
+   scanf("%d",&a_1);
+   printf("enter the difference :");
+   scanf("%d",&d);
+   a_n=a_1+(n-1)*d;
+   printf("%d is the nth term",a_n);
+}

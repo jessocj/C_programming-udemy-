@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+   int distA_B,speed,hours;
+   printf("enter the distance from  A to B :");
+   scanf("%d",&distA_B); //KM
+   printf("enter the speed:");
+   scanf("%d",&speed); //KM/hr
+   hours=distA_B/speed;//H//
+   float speedinMinutes=speed/60.0;//KM/M
+   int remainingMinutes =(distA_B % speed)/speedinMinutes;//Min| units
+   printf("the total time from B to A will take %d hours and %d minutes\n",hours,remainingMinutes);
+}

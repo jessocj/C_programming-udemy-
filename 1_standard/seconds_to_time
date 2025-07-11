@@ -1,0 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+   int sec,total_hr,min,total_min;
+   int remainingSec;
+   printf("enter seconds :");
+   scanf("%d",&sec); //seconds
+   total_hr=sec/3600;//3600=1hr
+   min=(sec-3600);   // (total_sec-total_hr)*3600/60
+   total_min=min/60;
+   remainingSec=min %60;//(total_sec-total_hr*3600)%60
+   printf("the time is \n %02d:%02d:%02d",total_hr,total_min,remainingSec);
+}

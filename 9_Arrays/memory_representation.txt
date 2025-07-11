@@ -1,0 +1,35 @@
+ 
+ 1.1D_array
+    0   1   2   3    4
+ -----------------------
+ 0|    |   |   |   |   |
+ ------------------------
+    |     |   |   |   |
+  3000  3004 3008 3012 3016 --->address in which they are stored
+  -b.coz int contains 4bit 
+
+  2.2D_array
+  int main()
+{
+    int mat[2][3]={{1,3,5},{2,4,6}};
+   // printf("Enter the elements :\n");
+
+    for(int i=0;i<2;i++)  //go over all the rows (one-by-one)
+    {
+        for(int j=0;j<3;j++) //go over all the columns
+        {
+            printf("address of mat [%d][%d]=%lu\n",i,j,&mat[i][j]);
+        }
+    }
+
+    return 0;
+}
+//here &mat[i][j] helps to get the memory address
+memory representation:
+
+address of mat [0][0]=1654651248
+address of mat [0][1]=1654651252
+address of mat [0][2]=1654651256
+address of mat [1][0]=1654651260
+address of mat [1][1]=1654651264
+address of mat [1][2]=1654651268

@@ -1,0 +1,6 @@
+we use strings to....
+1.hold TEXT
+2.hold basically any bunch of characters
+
+
+strings in c programming

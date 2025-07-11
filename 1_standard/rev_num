@@ -1,0 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
+/* 531
+units=1     remainder of num by 10
+tens=3   ----> 531/10=53 then 53 remainder by 10 we get 3
+hundreds=5 divide num by 100
+*/
+int main()
+{
+    //if num is 531 then rev will be 135
+   int num;
+   int revNum;
+   int units,tens,hundreds;
+   printf("enter the 3digit  num :");
+   scanf("%d",&num);//531
+
+   units=num % 10;//1
+   tens=(num/10)%10;//3
+   hundreds=num/100;//5
+
+   revNum=units;//1
+   revNum=revNum*10+tens;//13
+   revNum=revNum*10+hundreds; //130+5=135
+   printf("the rev of %d is %d ",num,revNum);
+
+
+
+  // printf("the rev of %d is %d%d%d ",num,units,tens,hundreds);
+
+
+}

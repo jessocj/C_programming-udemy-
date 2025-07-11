@@ -1,0 +1,13 @@
+
+//Ternary operator
+/*
+1.condition
+2.result(true)
+3.result(false)
+eg:
+ min=(num1>num2)?num2:num1
+          |        |    |
+here--condition--true-false
+?-->what will be if condition is true
+:-->result when condition is false
+*/

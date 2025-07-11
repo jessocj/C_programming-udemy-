@@ -20,11 +20,12 @@ jobs:
     - name: Compile only files with main()
       run: |
         mkdir -p bin
+        echo "Searching for .c files with main()..."
         for file in $(find . -name "*.c"); do
-          if grep -q "main[[:space:]]*(" "$file"; then
+          if grep -E -q "int[[:space:]]+main[[:space:]]*\(|void[[:space:]]+main[[:space:]]*\(" "$file"; then
             exe_name=$(basename "$file" .c)
             echo "Compiling $file -> bin/$exe_name"
-            gcc "$file" -o "bin/$exe_name" || exit 1
+            gcc "$file" -o "bin/$exe_name" || { echo "Failed to compile $file"; exit 1; }
           else
             echo "Skipping $file (no main function)"
           fi
@@ -32,10 +33,10 @@ jobs:
 
     - name: Run all compiled programs
       run: |
-        echo "Running all executables:"
+        echo "Running all executables in bin/:"
         for exe in bin/*; do
           echo "===================="
           echo "Running $exe"
-          $exe || echo "Error running $exe"
+          "$exe" || echo "Error running $exe"
           echo
         done
